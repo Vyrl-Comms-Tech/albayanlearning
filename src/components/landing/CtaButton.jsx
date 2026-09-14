@@ -6,7 +6,7 @@ export default function CtaButton({ children, className, size = "md" }) {
   const sizes = {
     sm: "px-5 py-2.5 text-sm",
     md: "px-7 py-3.5 text-base",
-    lg: "px-9 py-4 text-lg"
+    lg: "px-9 py-4 text-sm,"
   };
   return (
     <Link

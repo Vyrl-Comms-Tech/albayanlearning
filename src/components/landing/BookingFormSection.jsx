@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { ShieldCheck } from "lucide-react";
-import GHLBookingForm from "./GHLBookingForm";
+import GHLCalendar from "./GHLCalendar";
 
 export default function BookingFormSection() {
   return (
@@ -27,7 +27,7 @@ export default function BookingFormSection() {
           transition={{ duration: 0.6, delay: 0.15 }}
           className="mt-10 rounded-2xl bg-card border border-border p-6 sm:p-8"
         >
-          <GHLBookingForm />
+          <GHLCalendar />
         </motion.div>
       </div>
     </section>

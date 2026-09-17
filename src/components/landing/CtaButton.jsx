@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 
 export default function CtaButton({ children, className, size = "md" }) {
@@ -9,8 +8,10 @@ export default function CtaButton({ children, className, size = "md" }) {
     lg: "px-9 py-4 text-sm,"
   };
   return (
-    <Link
-      to="/booking"
+    // Plain <a> (not react-router's Link) so this does a full page reload,
+    // ensuring the booking calendar always mounts fresh.
+    <a
+      href="/booking"
       className={cn(
         "inline-flex items-center justify-center gap-2 rounded-lg bg-gold font-semibold text-ink shadow-lg transition-all hover:scale-[1.03] hover:shadow-xl animate-pulse-gold",
         sizes[size],
@@ -18,6 +19,6 @@ export default function CtaButton({ children, className, size = "md" }) {
       )}
     >
       {children}
-    </Link>
+    </a>
   );
 }

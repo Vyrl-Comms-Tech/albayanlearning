@@ -26,6 +26,10 @@ export default function BookingFormSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.15 }}
           className="mt-10 rounded-2xl bg-card border border-border p-6 sm:p-8"
+          style={{
+            height: "auto",
+            overflow: "visible",
+          }}
         >
           <GHLCalendar />
         </motion.div>

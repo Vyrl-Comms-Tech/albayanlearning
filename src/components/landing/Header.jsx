@@ -25,9 +25,11 @@ export default function Header() {
           <a href="#reviews" className="hover:text-forest transition-colors">Reviews</a>
           <a href="#faq" className="hover:text-forest transition-colors">FAQ</a>
         </nav>
-        <Link to="/booking" className="inline-flex items-center rounded-lg bg-forest px-5 py-2.5 text-sm font-semibold text-vellum shadow-md hover:bg-forest-dark transition-colors">
+        {/* Plain <a> (not react-router's Link) so this does a full page reload,
+            ensuring the booking calendar always mounts fresh. */}
+        <a href="/booking" className="inline-flex items-center rounded-lg bg-forest px-5 py-2.5 text-sm font-semibold text-vellum shadow-md hover:bg-forest-dark transition-colors">
           Quick Join Now
-        </Link>
+        </a>
       </div>
     </header>
   );

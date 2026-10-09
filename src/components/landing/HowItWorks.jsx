@@ -3,7 +3,7 @@ import { CalendarCheck, UserRound, Laptop } from "lucide-react";
 import CtaButton from "./CtaButton";
 
 const STEPS = [
-  { icon: CalendarCheck, title: "Book your class", desc: "$10, fully refundable, takes 60 seconds." },
+  { icon: CalendarCheck, title: "Book your class", desc: "Free trial, takes 60 seconds." },
   { icon: UserRound, title: "Get matched with a teacher", desc: "Tell us your preference (male/female) and best timing." },
   { icon: Laptop, title: "Start your live class", desc: "One-on-one, from any device, anywhere in the world." }
 ];
@@ -29,7 +29,7 @@ export default function HowItWorks() {
           ))}
         </div>
         <div className="mt-12 text-center">
-          <CtaButton size="lg">Book My $10 Class</CtaButton>
+          <CtaButton size="lg">Book My Free Trial Class</CtaButton>
         </div>
       </div>
     </section>

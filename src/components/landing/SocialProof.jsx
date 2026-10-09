@@ -1,13 +1,13 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { Star } from "lucide-react";
+import { Star, ChevronLeft, ChevronRight } from "lucide-react";
 
 const REVIEWS = [
   { name: "Aisha M.", location: "Dubai, UAE", quote: "My daughter's Tajweed improved noticeably in just a few weeks. The teacher is patient and truly qualified." },
   { name: "Yusuf K.", location: "London, UK", quote: "Finally found a class that fits our timezone. The one-on-one attention made all the difference for my son." },
-  { name: "Fatima R.", location: "Houston, USA", quote: "I was nervous about the $10 trial, but the teacher was so warm. We signed up for the monthly plan right after." },
+  { name: "Fatima R.", location: "Houston, USA", quote: "I was nervous about the trial, but the teacher was so warm. We signed up for the monthly plan right after." },
   { name: "Bilal H.", location: "Abu Dhabi, UAE", quote: "Being able to choose a male teacher for my boys mattered to us. Excellent, structured lessons." },
-  { name: "Sara L.", location: "Manchester, UK", quote: "The trial class showed me exactly where my recitation was off. Worth far more than $10." },
+  { name: "Sara L.", location: "Manchester, UK", quote: "The trial class showed me exactly where my recitation was off. Worth far more than the price of admission." },
   { name: "Omar T.", location: "New Jersey, USA", quote: "No app to download, no hassle. My kids log in from their tablet and love their teacher." }
 ];
 
@@ -65,6 +65,29 @@ function PhoneMockup({ r, i }) {
 }
 
 export default function SocialProof() {
+  const sliderRef = useRef(null);
+  const [active, setActive] = useState(0);
+
+  const handleScroll = () => {
+    const el = sliderRef.current;
+    if (!el) return;
+    const center = el.scrollLeft + el.clientWidth / 2;
+    let nearest = 0;
+    let best = Infinity;
+    Array.from(el.children).forEach((child, i) => {
+      const d = Math.abs(child.offsetLeft + child.offsetWidth / 2 - center);
+      if (d < best) { best = d; nearest = i; }
+    });
+    setActive(nearest);
+  };
+
+  const goTo = (i) => {
+    const el = sliderRef.current;
+    const child = el?.children[i];
+    if (!child) return;
+    el.scrollTo({ left: child.offsetLeft - (el.clientWidth - child.offsetWidth) / 2, behavior: "smooth" });
+  };
+
   return (
     <section id="reviews" className="py-20 sm:py-32 bg-secondary/40">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -79,10 +102,44 @@ export default function SocialProof() {
           <h2 className="mt-2 font-heading text-3xl sm:text-4xl font-bold text-ink">Trusted by Families in the UAE, UK & USA</h2>
           <p className="mt-3 text-muted-foreground">Real reviews, captured straight from parents' phones.</p>
         </motion.div>
-        <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
+        {/* Mobile: swipeable snap slider. sm+: regular grid. */}
+        <div ref={sliderRef} onScroll={handleScroll} className="mt-10 sm:mt-14 -mx-4 px-4 py-4 flex gap-4 overflow-x-auto snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:px-0 sm:py-0 sm:grid sm:grid-cols-2 lg:grid-cols-3 sm:gap-10 sm:overflow-visible">
           {REVIEWS.map((r, i) => (
-            <PhoneMockup key={r.name} r={r} i={i} />
+            <div key={r.name} className="shrink-0 basis-[78%] snap-center sm:basis-auto sm:shrink">
+              <PhoneMockup r={r} i={i} />
+            </div>
           ))}
+        </div>
+        <div className="mt-4 flex items-center justify-center gap-4 sm:hidden">
+          <button
+            type="button"
+            aria-label="Previous review"
+            onClick={() => goTo(Math.max(0, active - 1))}
+            disabled={active === 0}
+            className="flex h-9 w-9 items-center justify-center rounded-full bg-forest-dark text-vellum shadow transition-opacity disabled:opacity-30"
+          >
+            <ChevronLeft className="h-5 w-5" />
+          </button>
+          <div className="flex gap-2">
+            {REVIEWS.map((r, i) => (
+              <button
+                key={r.name}
+                type="button"
+                aria-label={`Show review ${i + 1}`}
+                onClick={() => goTo(i)}
+                className={`h-2 rounded-full transition-all ${i === active ? "w-6 bg-gold" : "w-2 bg-forest/25"}`}
+              />
+            ))}
+          </div>
+          <button
+            type="button"
+            aria-label="Next review"
+            onClick={() => goTo(Math.min(REVIEWS.length - 1, active + 1))}
+            disabled={active === REVIEWS.length - 1}
+            className="flex h-9 w-9 items-center justify-center rounded-full bg-forest-dark text-vellum shadow transition-opacity disabled:opacity-30"
+          >
+            <ChevronRight className="h-5 w-5" />
+          </button>
         </div>
       </div>
     </section>

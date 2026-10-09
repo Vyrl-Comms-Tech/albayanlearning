@@ -3,8 +3,8 @@ import { Plus, Minus } from "lucide-react";
 
 const FAQS = [
   {
-    q: "Is this really just $10?",
-    a: "Yes. Your first live class is $10, and if you're not happy with it, we refund the full amount — no conditions."
+    q: "Is the trial really free?",
+    a: "Yes. Your first live class is a free trial, with no conditions."
   },
   {
     q: "Are the teachers actually qualified?",

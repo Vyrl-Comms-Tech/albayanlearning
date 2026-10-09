@@ -18,7 +18,7 @@ export default function OfferBox() {
           <div className="absolute left-0 top-0 bottom-0 w-1 bg-gold" />
           <div className="p-8 sm:p-12">
             <p className="text-sm font-semibold uppercase tracking-widest text-gold">The Offer</p>
-            <h2 className="mt-2 font-heading text-3xl sm:text-4xl font-bold text-ink">What You Get for $10</h2>
+            <h2 className="mt-2 font-heading text-3xl sm:text-4xl font-bold text-ink">What You Get in Your Free Trial</h2>
             <ul className="mt-8 space-y-4">
               {PERKS.map((perk) => (
                 <li key={perk} className="flex items-start gap-3">
@@ -30,7 +30,7 @@ export default function OfferBox() {
               ))}
             </ul>
             <div className="mt-10">
-              <CtaButton size="lg">Book My $10 Class</CtaButton>
+              <CtaButton size="lg">Book My Free Trial Class</CtaButton>
             </div>
           </div>
         </div>

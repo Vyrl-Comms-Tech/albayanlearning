@@ -1,16 +1,13 @@
 import React from "react";
-import { Image } from "@/components/ui/image";
-
-const CHILD_IMG = "https://media.base44.com/images/public/6aa7d718dfce26298911a44a/a41b7ff03_generated_image.png";
 
 export default function WhyNow() {
   return (
-    <section className="py-20 sm:py-32 bg-secondary/40">
+    <section className="pt-0 pb-20 bg-secondary/40">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div className="relative">
-            <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-xl ring-1 ring-border">
-              <Image src={CHILD_IMG} alt="A child studying at a wooden desk in morning light" className="h-full w-full" fittingType="fill" />
+            <div className="aspect-square rounded-2xl overflow-hidden shadow-xl ring-1 ring-border">
+              <img src="/1.jpg" alt="A child studying at a wooden desk in morning light" className="h-full w-full object-cover" />
             </div>
             <div className="absolute -bottom-5 -right-3 hidden sm:flex items-center gap-2 rounded-lg bg-forest-dark px-4 py-3 text-vellum shadow-lg">
               <span className="font-heading text-2xl text-gold">2,000+</span>

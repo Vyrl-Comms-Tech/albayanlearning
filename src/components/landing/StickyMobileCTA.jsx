@@ -19,7 +19,7 @@ export default function StickyMobileCTA() {
           <Image src={LOGO} alt="Al Bayan" className="h-full w-full" fittingType="fit" />
         </div>
         <Link to="/booking" className="flex-1 text-center rounded-lg bg-gold px-4 py-2.5 text-sm font-semibold text-ink shadow-md">
-          Book My $10 Class
+          Book My Free Trial Class
         </Link>
       </div>
     </div>

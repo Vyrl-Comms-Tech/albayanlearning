@@ -1,18 +1,38 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { Camera } from "lucide-react";
-import { Image } from "@/components/ui/image";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
-const SHOTS = [
-  { img: "https://media.base44.com/images/public/6aa7d718dfce26298911a44a/a41b7ff03_generated_image.png", caption: "Live one-on-one classroom" },
-  { img: "https://media.base44.com/images/public/6aa7d718dfce26298911a44a/12d051682_generated_image.png", caption: "Student recitation feedback" },
-  { img: "https://media.base44.com/images/public/6aa7d718dfce26298911a44a/91b52638d_generated_image.png", caption: "Tajweed correction in real time" },
-  { img: "https://media.base44.com/images/public/6aa7d718dfce26298911a44a/97ab44feb_generated_image.png", caption: "Progress tracking" },
-  { img: "https://media.base44.com/images/public/6aa7d718dfce26298911a44a/0d5890708_generated_image.png", caption: "Interactive whiteboard" },
-  { img: "https://media.base44.com/images/public/6aa7d718dfce26298911a44a/ed0fd55d5_generated_image.png", caption: "Parent dashboard updates" }
-];
+const SHOTS = [2, 3, 4, 5, 6, 7].map((n) => ({ img: `/${n}.jpg`, caption: "Award Ceremony" }));
 
 export default function Gallery() {
+  const sliderRef = useRef(null);
+  const [active, setActive] = useState(0);
+
+  const handleScroll = () => {
+    const el = sliderRef.current;
+    if (!el) return;
+    const kids = Array.from(el.children);
+    if (el.scrollLeft + el.clientWidth >= el.scrollWidth - 2) {
+      setActive(kids.length - 1);
+      return;
+    }
+    const origin = kids[0].offsetLeft;
+    let nearest = 0;
+    let best = Infinity;
+    kids.forEach((child, i) => {
+      const d = Math.abs(child.offsetLeft - origin - el.scrollLeft);
+      if (d < best) { best = d; nearest = i; }
+    });
+    setActive(nearest);
+  };
+
+  const goTo = (i) => {
+    const el = sliderRef.current;
+    const child = el?.children[i];
+    if (!child) return;
+    el.scrollTo({ left: child.offsetLeft - el.children[0].offsetLeft, behavior: "smooth" });
+  };
+
   return (
     <section id="gallery" className="py-20 sm:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -24,38 +44,68 @@ export default function Gallery() {
           className="text-center max-w-2xl mx-auto"
         >
           <p className="text-sm font-semibold uppercase tracking-widest text-gold">Gallery</p>
-          <h2 className="mt-2 font-heading text-3xl sm:text-4xl font-bold text-ink">A Look Inside the Classroom</h2>
-          <p className="mt-3 text-muted-foreground">Screenshots from our live classes, dashboards, and parent updates.</p>
+          <h2 className="mt-2 font-heading text-3xl sm:text-4xl font-bold text-ink">Moments from Al Bayan Academy</h2>
+          <p className="mt-3 text-muted-foreground">A look at our students, teachers, and award ceremonies.</p>
         </motion.div>
 
-        <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Swipeable snap slider: 1 large image on mobile, 2 on tablet, 3 on desktop. */}
+        <div
+          ref={sliderRef}
+          onScroll={handleScroll}
+          className="mt-10 sm:mt-14 -mx-4 px-4 scroll-px-4 py-4 flex gap-4 sm:gap-6 overflow-x-auto snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        >
           {SHOTS.map((s, i) => (
             <motion.div
-              key={i}
+              key={s.img}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: (i % 3) * 0.1 }}
-              className="group rounded-xl overflow-hidden border border-border bg-card shadow-sm hover:shadow-xl transition-all hover:-translate-y-1"
+              className="group shrink-0 basis-[88%] sm:basis-[calc(50%-0.75rem)] lg:basis-[calc(33.333%-1rem)] snap-start rounded-xl overflow-hidden border border-border bg-card shadow-sm hover:shadow-xl transition-shadow"
             >
-              <div className="flex items-center gap-1.5 px-3 py-2 bg-forest-dark">
-                <span className="h-2.5 w-2.5 rounded-full bg-gold/70" />
-                <span className="h-2.5 w-2.5 rounded-full bg-vellum/30" />
-                <span className="h-2.5 w-2.5 rounded-full bg-vellum/30" />
-                <span className="ml-2 text-[10px] text-vellum/50 font-mono truncate">live.albayanlearning.com</span>
-              </div>
-              <div className="relative aspect-video overflow-hidden">
-                <Image src={s.img} alt={s.caption} className="h-full w-full transition-transform duration-500 group-hover:scale-105" fittingType="fill" />
-                <div className="absolute inset-0 bg-gradient-to-t from-forest-dark/80 via-forest-dark/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                  <p className="text-vellum text-sm font-medium">{s.caption}</p>
-                </div>
+              <div className="relative aspect-square overflow-hidden">
+                <img
+                  src={s.img}
+                  alt={s.caption}
+                  loading="lazy"
+                  className="h-full w-full object-contain"
+                />
               </div>
             </motion.div>
           ))}
         </div>
-        <p className="mt-8 text-center text-sm text-muted-foreground flex items-center justify-center gap-1.5">
-          <Camera className="h-4 w-4 text-gold" /> Replace these placeholders with your own classroom screenshots.
-        </p>
+
+        <div className="mt-6 flex items-center justify-center gap-4">
+          <button
+            type="button"
+            aria-label="Previous photo"
+            onClick={() => goTo(Math.max(0, active - 1))}
+            disabled={active === 0}
+            className="flex h-9 w-9 items-center justify-center rounded-full bg-forest-dark text-vellum shadow transition-opacity disabled:opacity-30"
+          >
+            <ChevronLeft className="h-5 w-5" />
+          </button>
+          <div className="flex gap-2">
+            {SHOTS.map((s, i) => (
+              <button
+                key={s.img}
+                type="button"
+                aria-label={`Show photo ${i + 1}`}
+                onClick={() => goTo(i)}
+                className={`h-2 rounded-full transition-all ${i === active ? "w-6 bg-gold" : "w-2 bg-forest/25"}`}
+              />
+            ))}
+          </div>
+          <button
+            type="button"
+            aria-label="Next photo"
+            onClick={() => goTo(Math.min(SHOTS.length - 1, active + 1))}
+            disabled={active === SHOTS.length - 1}
+            className="flex h-9 w-9 items-center justify-center rounded-full bg-forest-dark text-vellum shadow transition-opacity disabled:opacity-30"
+          >
+            <ChevronRight className="h-5 w-5" />
+          </button>
+        </div>
       </div>
     </section>
   );

@@ -4,7 +4,7 @@ import { Loader2 } from "lucide-react";
 // TODO: point this at your third-party form/checkout endpoint (e.g. Formspree, Zapier, your own API).
 const SUBMIT_ENDPOINT = "";
 
-export default function BookingForm({ ctaLabel = "Continue to Checkout · $10" }) {
+export default function BookingForm({ ctaLabel = "Continue to Checkout · Free Trial" }) {
   const [form, setForm] = useState({ name: "", email: "", whatsapp: "", teacherGender: "any", course: "Quran with Tajweed" });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");

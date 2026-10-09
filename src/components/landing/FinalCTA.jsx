@@ -12,10 +12,10 @@ export default function FinalCTA() {
           Your Child's Quran Journey Starts With One Class
         </h2>
         <p className="mt-5 text-lg text-vellum/80">
-          $10. Fully refundable. Live, one-on-one, with a qualified teacher.
+          Free trial. Live, one-on-one, with a qualified teacher.
         </p>
         <div className="mt-9">
-          <CtaButton size="lg">Book My $10 Class</CtaButton>
+          <CtaButton size="lg">Book My Free Trial Class</CtaButton>
         </div>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-vellum/70">
           <span className="inline-flex items-center gap-1.5"><ShieldCheck className="h-4 w-4 text-gold" /> No commitment after your trial</span>

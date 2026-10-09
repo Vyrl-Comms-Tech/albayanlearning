@@ -23,7 +23,7 @@ export default function VideoTestimonials() {
         >
           <p className="text-sm font-semibold uppercase tracking-widest text-gold">Video Testimonials</p>
           <h2 className="mt-2 font-heading text-3xl sm:text-4xl font-bold text-ink">Hear It From the Students</h2>
-          <p className="mt-3 text-muted-foreground">Short stories from the families who started with one $10 class.</p>
+          <p className="mt-3 text-muted-foreground">Short stories from the families who started with one free trial class.</p>
         </motion.div>
 
         <div className="mt-14 grid grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10">

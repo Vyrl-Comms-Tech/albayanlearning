@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import { CheckCircle2, CalendarClock, UserRound, BookOpen, Sparkles } from "lucide-react";
 
 const STEPS = [
-  { icon: CheckCircle2, title: "Payment Confirmed", desc: "Your $10 trial class is booked and secured." },
+  { icon: CheckCircle2, title: "Payment Confirmed", desc: "Your free trial class is booked and secured." },
   { icon: UserRound, title: "Teacher Matching", desc: "We're matching your child with a qualified Tajweed teacher based on your preferences." },
-  { icon: CalendarClock, title: "Scheduling", desc: "You'll receive a WhatsApp message within 24 hours to confirm your class time." },
+  { icon: CalendarClock, title: "Scheduling", desc: "You'll receive a confirmation within 24 hours to confirm your class time." },
   { icon: BookOpen, title: "Start Learning", desc: "Join your live one-on-one class from any device, anywhere in the world." }
 ];
 
@@ -53,7 +53,7 @@ export default function ThankYou() {
 
         <div className="mt-8 inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-4 py-2 text-sm font-medium text-forest-dark">
           <Sparkles className="h-4 w-4 text-gold" />
-          Keep an eye on your WhatsApp — we'll reach out shortly.
+          Keep an eye on your email — we'll reach out shortly.
         </div>
 
         <div className="mt-10">

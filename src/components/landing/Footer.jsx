@@ -7,8 +7,8 @@ const LOGO = "https://media.base44.com/images/public/user_695dfd2a456dcd53282e27
 export default function Footer() {
   return (
     <footer className="bg-forest-dark text-vellum/80">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14">
-        <div className="grid md:grid-cols-3 gap-10">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-14 pb-28 sm:pb-14">
+        <div className="grid md:grid-cols-3 gap-6 md:gap-10">
           <div>
             <div className="h-12 w-48 rounded-lg overflow-hidden bg-black ring-1 ring-vellum/10">
               <Image src={LOGO} alt="Al Bayan Learning Centre" className="h-full w-full" fittingType="fit" />
@@ -34,7 +34,7 @@ export default function Footer() {
             </ul>
           </div>
         </div>
-        <div className="mt-12 pt-6 border-t border-vellum/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-vellum/50">
+        <div className="mt-6 sm:mt-12 pt-6 border-t border-vellum/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-vellum/50">
           <p>© {new Date().getFullYear()} Al Bayan Learning Centre. All rights reserved.</p>
           <div className="flex gap-4">
             <a href="#" className="hover:text-gold transition-colors">Privacy Policy</a>

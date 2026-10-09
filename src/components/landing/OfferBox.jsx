@@ -12,13 +12,13 @@ const PERKS = [
 
 export default function OfferBox() {
   return (
-    <section className="py-20 sm:py-32">
+    <section className="py-12 sm:py-32">
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <div className="relative rounded-2xl bg-card border border-border shadow-xl overflow-hidden">
           <div className="absolute left-0 top-0 bottom-0 w-1 bg-gold" />
           <div className="p-8 sm:p-12">
             <p className="text-sm font-semibold uppercase tracking-widest text-gold">The Offer</p>
-            <h2 className="mt-2 font-heading text-3xl sm:text-4xl font-bold text-ink">What You Get in Your Free Trial</h2>
+            <h2 className="mt-2 font-heading text-2xl sm:text-4xl font-bold text-ink">What You Get in Your Free Trial</h2>
             <ul className="mt-8 space-y-4">
               {PERKS.map((perk) => (
                 <li key={perk} className="flex items-start gap-3">

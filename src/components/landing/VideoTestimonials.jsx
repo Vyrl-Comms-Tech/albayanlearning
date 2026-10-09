@@ -12,7 +12,7 @@ const VIDEOS = [
 
 export default function VideoTestimonials() {
   return (
-    <section className="py-20 sm:py-32">
+    <section className="py-12 sm:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -22,11 +22,11 @@ export default function VideoTestimonials() {
           className="text-center max-w-2xl mx-auto"
         >
           <p className="text-sm font-semibold uppercase tracking-widest text-gold">Video Testimonials</p>
-          <h2 className="mt-2 font-heading text-3xl sm:text-4xl font-bold text-ink">Hear It From the Students</h2>
+          <h2 className="mt-2 font-heading text-2xl sm:text-4xl font-bold text-ink">Hear It From the Students</h2>
           <p className="mt-3 text-muted-foreground">Short stories from the families who started with one free trial class.</p>
         </motion.div>
 
-        <div className="mt-14 grid grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10">
+        <div className="mt-8 sm:mt-14 grid grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10">
           {VIDEOS.map((v, i) => (
             <motion.div
               key={v.name}

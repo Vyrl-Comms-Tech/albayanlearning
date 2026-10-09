@@ -27,11 +27,11 @@ const FAQS = [
 export default function FAQ() {
   const [open, setOpen] = useState(0);
   return (
-    <section id="faq" className="py-20 sm:py-32 bg-secondary/40">
+    <section id="faq" className="py-12 sm:py-32 bg-secondary/40">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <p className="text-sm font-semibold uppercase tracking-widest text-gold">FAQ</p>
-          <h2 className="mt-2 font-heading text-3xl sm:text-4xl font-bold text-ink">Common Questions</h2>
+          <h2 className="mt-2 font-heading text-2xl sm:text-4xl font-bold text-ink">Common Questions</h2>
         </div>
         <div className="mt-12 divide-y divide-border border-y border-border">
           {FAQS.map((item, i) => {

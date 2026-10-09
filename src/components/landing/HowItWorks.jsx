@@ -10,13 +10,13 @@ const STEPS = [
 
 export default function HowItWorks() {
   return (
-    <section id="how-it-works" className="py-20 sm:py-32">
+    <section id="how-it-works" className="py-12 sm:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto">
           <p className="text-sm font-semibold uppercase tracking-widest text-gold">How It Works</p>
-          <h2 className="mt-2 font-heading text-3xl sm:text-4xl font-bold text-ink">Three Simple Steps</h2>
+          <h2 className="mt-2 font-heading text-2xl sm:text-4xl font-bold text-ink">Three Simple Steps</h2>
         </div>
-        <div className="mt-14 grid md:grid-cols-3 gap-8">
+        <div className="mt-8 sm:mt-14 grid md:grid-cols-3 gap-8">
           {STEPS.map(({ icon: Icon, title, desc }, i) => (
             <div key={title} className="relative rounded-2xl border border-border bg-card p-8 shadow-sm">
               <span className="absolute -top-4 left-8 flex h-9 w-9 items-center justify-center rounded-full bg-forest text-vellum font-heading font-bold text-sm">

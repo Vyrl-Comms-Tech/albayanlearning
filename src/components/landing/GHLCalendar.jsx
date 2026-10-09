@@ -67,7 +67,7 @@ export default function GHLCalendar({ className = "" }) {
 
   return (
     <div
-      className={`ghl-calendar-wrapper ${className}`}
+      className={`ghl-calendar-wrapper overflow-hidden rounded-2xl ${className}`}
       style={{
         width: "100%",
       }}
@@ -79,8 +79,9 @@ export default function GHLCalendar({ className = "" }) {
         scrolling="no"
         allow="payment"
         title="Book a class"
+        // On mobile, widen past the wrapper so the widget's own side padding is clipped.
+        className="block max-w-none w-[calc(100%+1.5rem)] -mx-3 sm:w-full sm:mx-0"
         style={{
-          width: "100%",
           height: `${iframeHeight}px`,
           border: "none",
           display: "block",

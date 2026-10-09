@@ -89,7 +89,7 @@ export default function SocialProof() {
   };
 
   return (
-    <section id="reviews" className="py-20 sm:py-32 bg-secondary/40">
+    <section id="reviews" className="py-12 sm:py-32 bg-secondary/40">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -99,11 +99,11 @@ export default function SocialProof() {
           className="text-center max-w-2xl mx-auto"
         >
           <p className="text-sm font-semibold uppercase tracking-widest text-gold">Social Proof</p>
-          <h2 className="mt-2 font-heading text-3xl sm:text-4xl font-bold text-ink">Trusted by Families in the UAE, UK & USA</h2>
+          <h2 className="mt-2 font-heading text-2xl sm:text-4xl font-bold text-ink">Trusted by Families in the UAE, UK & USA</h2>
           <p className="mt-3 text-muted-foreground">Real reviews, captured straight from parents' phones.</p>
         </motion.div>
         {/* Mobile: swipeable snap slider. sm+: regular grid. */}
-        <div ref={sliderRef} onScroll={handleScroll} className="mt-10 sm:mt-14 -mx-4 px-4 py-4 flex gap-4 overflow-x-auto snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:px-0 sm:py-0 sm:grid sm:grid-cols-2 lg:grid-cols-3 sm:gap-10 sm:overflow-visible">
+        <div ref={sliderRef} onScroll={handleScroll} className="mt-8 sm:mt-14 -mx-4 px-4 py-8 flex gap-4 overflow-x-auto snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:px-0 sm:py-0 sm:grid sm:grid-cols-2 lg:grid-cols-3 sm:gap-10 sm:overflow-visible">
           {REVIEWS.map((r, i) => (
             <div key={r.name} className="shrink-0 basis-[78%] snap-center sm:basis-auto sm:shrink">
               <PhoneMockup r={r} i={i} />

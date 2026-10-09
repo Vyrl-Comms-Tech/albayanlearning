@@ -34,7 +34,7 @@ export default function Gallery() {
   };
 
   return (
-    <section id="gallery" className="py-20 sm:py-32">
+    <section id="gallery" className="py-12 sm:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -44,7 +44,7 @@ export default function Gallery() {
           className="text-center max-w-2xl mx-auto"
         >
           <p className="text-sm font-semibold uppercase tracking-widest text-gold">Gallery</p>
-          <h2 className="mt-2 font-heading text-3xl sm:text-4xl font-bold text-ink">Moments from Al Bayan Academy</h2>
+          <h2 className="mt-2 font-heading text-2xl sm:text-4xl font-bold text-ink">Moments from Al Bayan Academy</h2>
           <p className="mt-3 text-muted-foreground">A look at our students, teachers, and award ceremonies.</p>
         </motion.div>
 

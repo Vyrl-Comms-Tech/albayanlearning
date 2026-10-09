@@ -5,7 +5,7 @@ import VideoModalPreview from "./VideoModalPreview";
 
 export default function Hero() {
   return (
-    <section className="relative pt-28 sm:pt-36 pb-16 sm:pb-24 overflow-hidden">
+    <section className="relative pt-24 sm:pt-36 pb-10 sm:pb-24 overflow-hidden">
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-vellum via-vellum to-secondary/40" />
       <div className="absolute top-0 right-0 -z-10 h-96 w-96 rounded-full bg-leaf/10 blur-3xl" />
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -15,10 +15,10 @@ export default function Hero() {
               <ShieldCheck className="h-4 w-4 text-gold" />
               Free Trial
             </div>
-            <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.1] text-ink text-balance">
+            <h1 className="font-heading text-3xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.1] text-ink text-balance">
               Try a Live Quran Class as a <span className="text-forest">Free Trial</span>
             </h1>
-            <p className="mt-6 text-lg sm:text-xl text-muted-foreground max-w-xl">
+            <p className="mt-4 sm:mt-6 text-base sm:text-xl text-muted-foreground max-w-xl">
               One-on-one with a qualified teacher. See why 2,000+ families started here.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row sm:items-center gap-4">

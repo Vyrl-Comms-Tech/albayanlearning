@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Play } from "lucide-react";
-import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { Play, X } from "lucide-react";
+import { Dialog, DialogClose, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 
 const YOUTUBE_ID = "OsBEtQRpZ9w";
 
@@ -32,14 +32,22 @@ export default function VideoModalPreview({ youtubeId = YOUTUBE_ID, thumbnail })
       </button>
 
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="max-w-4xl p-0 gap-0 overflow-hidden border-0 bg-black text-white">
+        <DialogContent className="max-w-4xl w-[calc(100%-1rem)] p-0 gap-0 overflow-hidden border-0 bg-white text-ink [&>button:last-child]:hidden">
           <DialogTitle className="sr-only">Live class preview</DialogTitle>
           <DialogDescription className="sr-only">Video preview of a live one-on-one Quran class</DialogDescription>
-          <div className="aspect-video w-full">
+          <div className="flex justify-end bg-white px-2 py-1 sm:px-3 sm:py-2">
+            <DialogClose
+              aria-label="Close video"
+              className="flex h-9 w-9 items-center justify-center rounded-full text-ink transition-colors hover:bg-black/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+            >
+              <X className="h-5 w-5" />
+            </DialogClose>
+          </div>
+          <div className="aspect-[4/5] sm:aspect-video w-full bg-black">
             {/* Content unmounts on close, so playback stops automatically. */}
             <iframe
               className="h-full w-full"
-              src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0`}
+              src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0&playsinline=1&modestbranding=1`}
               title="Live class preview"
               allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
               allowFullScreen

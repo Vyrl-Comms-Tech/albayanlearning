@@ -48,11 +48,11 @@ export default function Gallery() {
           <p className="mt-3 text-muted-foreground">A look at our students, teachers, and award ceremonies.</p>
         </motion.div>
 
-        {/* Swipeable snap slider: 1 large image on mobile, 2 on tablet, 3 on desktop. */}
+        {/* Mobile: swipeable snap slider. sm+: regular grid. */}
         <div
           ref={sliderRef}
           onScroll={handleScroll}
-          className="mt-10 sm:mt-14 -mx-4 px-4 scroll-px-4 py-4 flex gap-4 sm:gap-6 overflow-x-auto snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="mt-10 sm:mt-14 -mx-4 px-4 scroll-px-4 py-4 flex gap-4 overflow-x-auto snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:px-0 sm:py-0 sm:grid sm:grid-cols-2 lg:grid-cols-3 sm:gap-6 sm:overflow-visible"
         >
           {SHOTS.map((s, i) => (
             <motion.div
@@ -61,7 +61,7 @@ export default function Gallery() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: (i % 3) * 0.1 }}
-              className="group shrink-0 basis-[88%] sm:basis-[calc(50%-0.75rem)] lg:basis-[calc(33.333%-1rem)] snap-start rounded-xl overflow-hidden border border-border bg-card shadow-sm hover:shadow-xl transition-shadow"
+              className="group shrink-0 basis-[88%] sm:basis-auto sm:shrink snap-start rounded-xl overflow-hidden border border-border bg-card shadow-sm hover:shadow-xl transition-shadow"
             >
               <div className="relative aspect-square overflow-hidden">
                 <img
@@ -75,7 +75,7 @@ export default function Gallery() {
           ))}
         </div>
 
-        <div className="mt-6 flex items-center justify-center gap-4">
+        <div className="mt-6 flex items-center justify-center gap-4 sm:hidden">
           <button
             type="button"
             aria-label="Previous photo"

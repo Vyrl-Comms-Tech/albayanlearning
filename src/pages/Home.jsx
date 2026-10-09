@@ -6,7 +6,7 @@ import OfferBox from "@/components/landing/OfferBox";
 import WhyNow from "@/components/landing/WhyNow";
 import HowItWorks from "@/components/landing/HowItWorks";
 import SocialProof from "@/components/landing/SocialProof";
-import VideoTestimonials from "@/components/landing/VideoTestimonials";
+// import VideoTestimonials from "@/components/landing/VideoTestimonials";
 import Gallery from "@/components/landing/Gallery";
 import FAQ from "@/components/landing/FAQ";
 import FinalCTA from "@/components/landing/FinalCTA";
@@ -26,7 +26,7 @@ export default function Home() {
         <WhyNow />
         <HowItWorks />
         <SocialProof />
-        <VideoTestimonials />
+        {/* <VideoTestimonials /> */}
         <Gallery />
         <FAQ />
         <FinalCTA />

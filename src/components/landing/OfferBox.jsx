@@ -6,8 +6,7 @@ const PERKS = [
   "One-on-one live class (not a recording, not a group session)",
   "Full 30–45 minute session with a qualified Tajweed-trained teacher",
   "Choice of male or female teacher",
-  "Any device, any timezone — no app download needed",
-  "100% refundable if you're not satisfied — no questions asked"
+  "Any device, any timezone no app download needed",
 ];
 
 export default function OfferBox() {

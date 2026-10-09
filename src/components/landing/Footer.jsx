@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { Image } from "@/components/ui/image";
 
-const LOGO = "https://media.base44.com/images/public/user_695dfd2a456dcd53282e2719/f11f38df6_image.png";
+const LOGO = "/logo.png";
 
 export default function Footer() {
   return (

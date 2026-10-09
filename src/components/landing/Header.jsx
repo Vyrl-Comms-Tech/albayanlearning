@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Image } from "@/components/ui/image";
 
-const LOGO = "https://media.base44.com/images/public/user_695dfd2a456dcd53282e2719/f11f38df6_image.png";
+const LOGO = "/logo.png";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -21,9 +21,9 @@ export default function Header() {
           </div>
         </Link>
         <nav className="hidden md:flex items-center gap-8 text-ink font-medium">
-          <a href="#how-it-works" className="hover:text-forest transition-colors">How It Works</a>
-          <a href="#reviews" className="hover:text-forest transition-colors">Reviews</a>
-          <a href="#faq" className="hover:text-forest transition-colors">FAQ</a>
+          <Link to="/#how-it-works" className="hover:text-forest transition-colors">How It Works</Link>
+          <Link to="/#reviews" className="hover:text-forest transition-colors">Reviews</Link>
+          <Link to="/#faq" className="hover:text-forest transition-colors">FAQ</Link>
         </nav>
         {/* Plain <a> (not react-router's Link) so this does a full page reload,
             ensuring the booking calendar always mounts fresh. */}

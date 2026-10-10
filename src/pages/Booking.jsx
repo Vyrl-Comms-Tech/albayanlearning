@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { ArrowLeft, ShieldCheck } from "lucide-react";
-import GHLCalendar from "@/components/landing/GHLCalendar";
+import GHLBookingFlow from "@/components/landing/GHLBookingFlow";
 
 export default function Booking() {
   return (
@@ -18,7 +18,7 @@ export default function Booking() {
           <p className="mt-3 text-muted-foreground">Fill in your details, choose a teacher, and continue to secure checkout.</p>
         </div>
         <div className="mt-6 sm:mt-10 rounded-2xl bg-card border border-border shadow-xl p-0">
-          <GHLCalendar />
+          <GHLBookingFlow />
         </div>
       </div>
     </div>

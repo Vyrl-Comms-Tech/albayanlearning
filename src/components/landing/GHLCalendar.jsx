@@ -1,67 +1,70 @@
 import React, { useEffect, useRef, useState } from "react";
 
-const GHL_EMBED_SCRIPT_SRC =
-  "https://api.leadconnectorhq.com/js/form_embed.js";
+const GHL_EMBED_SCRIPT_SRC = "https://link.msgsndr.com/js/form_embed.js";
 
-export default function GHLCalendar({ className = "" }) {
+function loadEmbedScript(onReady) {
+  if (window.iFrameResize) {
+    onReady();
+    return () => {};
+  }
+
+  let script = document.querySelector(`script[src="${GHL_EMBED_SCRIPT_SRC}"]`);
+  if (!script) {
+    script = document.createElement("script");
+    script.src = GHL_EMBED_SCRIPT_SRC;
+    script.async = true;
+    document.body.appendChild(script);
+  }
+  script.addEventListener("load", onReady);
+  return () => script.removeEventListener("load", onReady);
+}
+
+const CALENDAR_URL =
+  "https://api.leadconnectorhq.com/widget/booking/fbbAUkB2yKVWqN7BvSKZ";
+
+// prefill: optional { email, first_name, last_name, phone } for the booking form.
+export default function GHLCalendar({ className = "", prefill = null }) {
   const iframeRef = useRef(null);
 
   const [iframeHeight, setIframeHeight] = useState(900);
 
+  const params = new URLSearchParams();
+  Object.entries(prefill || {}).forEach(([key, value]) => {
+    if (value) params.set(key, value);
+  });
+  const query = params.toString();
+  const src = query ? `${CALENDAR_URL}?${query}` : CALENDAR_URL;
+
   useEffect(() => {
-    // Load GHL script only once
-    if (
-      !document.querySelector(
-        `script[src="${GHL_EMBED_SCRIPT_SRC}"]`
-      )
-    ) {
-      const script = document.createElement("script");
+    let resizer;
 
-      script.src = GHL_EMBED_SCRIPT_SRC;
-      script.async = true;
-
-      document.body.appendChild(script);
-    }
-
-    // Listen for iframe resize messages
-    const handleMessage = (event) => {
-      if (!event.origin.includes("leadconnectorhq.com")) {
-        return;
-      }
-
-      let data = event.data;
-
-      // Sometimes iframe messages come as JSON strings
-      if (typeof data === "string") {
-        try {
-          data = JSON.parse(data);
-        } catch {
-          return;
-        }
-      }
-
-      console.log("GHL MESSAGE:", data);
-
-      // Try common height properties
-      const newHeight =
-        data?.height ||
-        data?.iframeHeight ||
-        data?.contentHeight ||
-        data?.data?.height;
-
-      if (newHeight) {
-        const parsedHeight = Number(newHeight);
-
-        if (!Number.isNaN(parsedHeight)) {
-          setIframeHeight(parsedHeight);
-        }
-      }
-    };
-
-    window.addEventListener("message", handleMessage);
+    // The calendar iframe only reports its content height once the parent
+    // initializes iframe-resizer on it. The embed script does this at load
+    // time, but this iframe mounts later, so do it ourselves.
+    const cleanup = loadEmbedScript(() => {
+      if (!iframeRef.current || !window.iFrameResize) return;
+      resizer = window.iFrameResize(
+        {
+          log: false,
+          checkOrigin: false,
+          scrolling: false,
+          heightCalculationMethod: "offset",
+          resizedCallback: ({ height }) => {
+            const next = Number(height);
+            if (next > 0) setIframeHeight(next + 5);
+          },
+        },
+        iframeRef.current
+      );
+    });
 
     return () => {
-      window.removeEventListener("message", handleMessage);
+      cleanup();
+      try {
+        resizer?.[0]?.iFrameResizer?.close();
+      } catch {
+        // iframe already removed
+      }
     };
   }, []);
 
@@ -74,8 +77,8 @@ export default function GHLCalendar({ className = "" }) {
     >
       <iframe
         ref={iframeRef}
-        src="https://api.leadconnectorhq.com/widget/booking/fbbAUkB2yKVWqN7BvSKZ"
-        id="fbbAUkB2yKVWqN7BvSKZ_1789567222437"
+        src={src}
+        id="fbbAUkB2yKVWqN7BvSKZ_1791636064334"
         scrolling="no"
         allow="payment"
         title="Book a class"
@@ -87,9 +90,8 @@ export default function GHLCalendar({ className = "" }) {
           display: "block",
 
           // Smooth height change
-          transition: "height 0.5s ease",
+          transition: "height 0.4s ease-in-out",
 
-          // IMPORTANT
           overflow: "hidden",
         }}
       />

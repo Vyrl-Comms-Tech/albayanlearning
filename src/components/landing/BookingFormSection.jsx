@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { ShieldCheck } from "lucide-react";
-import GHLCalendar from "./GHLCalendar";
+import GHLBookingFlow from "./GHLBookingFlow";
 
 export default function BookingFormSection() {
   return (
@@ -31,7 +31,7 @@ export default function BookingFormSection() {
             overflow: "visible",
           }}
         >
-          <GHLCalendar />
+          <GHLBookingFlow />
         </motion.div>
       </div>
     </section>

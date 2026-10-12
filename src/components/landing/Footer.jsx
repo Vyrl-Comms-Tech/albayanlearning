@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { Image } from "@/components/ui/image";
 
-const LOGO = "/Al-bayan-logo-white-text.png";
+const LOGO = "/Al-bayan-logo-white-text.png?v=2";
 
 export default function Footer() {
   return (

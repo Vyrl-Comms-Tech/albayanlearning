@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { Image } from "@/components/ui/image";
 
-const LOGO = "/logo.png";
+const LOGO = "/Al-bayan-logo-white-text.png";
 
 export default function Footer() {
   return (
@@ -11,8 +11,8 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-14 pb-28 sm:pb-14">
         <div className="grid md:grid-cols-3 gap-6 md:gap-10">
           <div>
-            <a href="/" aria-label="Al Bayan Learning Centre home" className="block h-12 w-48 rounded-lg overflow-hidden bg-black ring-1 ring-vellum/10">
-              <Image src={LOGO} alt="Al Bayan Learning Centre" className="h-full w-full" fittingType="fit" />
+            <a href="/" aria-label="Al Bayan Academy home" className="block h-12 w-48 rounded-lg overflow-hidden">
+              <Image src={LOGO} alt="Al Bayan Academy" className="h-full w-full" fittingType="fit" />
             </a>
             <p className="mt-4 text-sm text-vellum/60 max-w-xs">
               Al Bayan Learning Centre — bringing qualified, one-on-one Quran teaching to families worldwide.

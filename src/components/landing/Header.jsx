@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Image } from "@/components/ui/image";
 
-const LOGO = "/logo.png";
+const LOGO = "/Al-bayan-logo-removebg.png";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -16,7 +16,7 @@ export default function Header() {
     <header className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${scrolled ? "bg-vellum/85 backdrop-blur-md shadow-sm border-b border-border" : "bg-transparent"}`}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16 sm:h-20">
         <Link to="/" className="flex items-center">
-          <div className="h-10 sm:h-12 w-40 sm:w-48 rounded-lg overflow-hidden bg-black ring-1 ring-forest-dark/30">
+          <div className="h-10 sm:h-14 w-40 sm:w-56 overflow-hidden">
             <Image src={LOGO} alt="Al Bayan Learning Centre" className="h-full w-full" fittingType="fit" />
           </div>
         </Link>

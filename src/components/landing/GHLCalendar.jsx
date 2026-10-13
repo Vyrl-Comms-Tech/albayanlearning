@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { BOOKING_COMPLETE_KEY } from "@/lib/bookingTracking";
 
 const GHL_EMBED_SCRIPT_SRC = "https://link.msgsndr.com/js/form_embed.js";
 
@@ -25,6 +26,7 @@ const CALENDAR_URL =
 // prefill: optional { email, first_name, last_name, phone } for the booking form.
 export default function GHLCalendar({ className = "", prefill = null }) {
   const iframeRef = useRef(null);
+  const redirectingRef = useRef(false);
 
   const [iframeHeight, setIframeHeight] = useState(900);
 
@@ -34,6 +36,55 @@ export default function GHLCalendar({ className = "", prefill = null }) {
   });
   const query = params.toString();
   const src = query ? `${CALENDAR_URL}?${query}` : CALENDAR_URL;
+
+  const redirectAfterBooking = useCallback(() => {
+    if (redirectingRef.current) return;
+    redirectingRef.current = true;
+    try {
+      window.sessionStorage.setItem(BOOKING_COMPLETE_KEY, "1");
+    } catch {
+      // Storage can be disabled; the thank-you page should still open.
+    }
+    // A full navigation lets the Meta Pixel in index.html record this page view.
+    window.location.assign("/thank-you");
+  }, []);
+
+  useEffect(() => {
+    const handleBookingMessage = (event) => {
+      if (event.origin !== "https://api.leadconnectorhq.com") return;
+      if (event.source !== iframeRef.current?.contentWindow) return;
+
+      let data = event.data;
+      if (typeof data === "string") {
+        try {
+          data = JSON.parse(data);
+        } catch {
+          return;
+        }
+      }
+
+      // HighLevel sends this only once an appointment has been completed.
+      if (Array.isArray(data) && data[0] === "msgsndr-booking-complete") {
+        redirectAfterBooking();
+      }
+    };
+
+    window.addEventListener("message", handleBookingMessage);
+    return () => window.removeEventListener("message", handleBookingMessage);
+  }, [redirectAfterBooking]);
+
+  const handleCalendarLoad = () => {
+    // If HighLevel has a custom confirmation URL configured, its redirect can
+    // load our page inside the iframe. Move it into the main browser window.
+    try {
+      const url = new URL(iframeRef.current.contentWindow.location.href);
+      if (url.origin === window.location.origin && url.pathname === "/thank-you") {
+        redirectAfterBooking();
+      }
+    } catch {
+      // The regular calendar is cross-origin, so its location is inaccessible.
+    }
+  };
 
   useEffect(() => {
     let resizer;
@@ -77,6 +128,7 @@ export default function GHLCalendar({ className = "", prefill = null }) {
     >
       <iframe
         ref={iframeRef}
+        onLoad={handleCalendarLoad}
         src={src}
         id="fbbAUkB2yKVWqN7BvSKZ_1791636064334"
         scrolling="no"

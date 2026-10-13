@@ -5,10 +5,10 @@ import { Image } from "@/components/ui/image";
 
 const LOGO = "/Al-bayan-logo-white-text.png?v=2";
 
-export default function Footer() {
+export default function Footer({ compactMobile = false }) {
   return (
     <footer className="bg-forest-dark text-vellum/80">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-14 pb-28 sm:pb-14">
+      <div className={`mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-14 sm:pb-14 ${compactMobile ? "pb-14" : "pb-28"}`}>
         <div className="grid md:grid-cols-3 gap-6 md:gap-10">
           <div>
             <a href="/" aria-label="Al Bayan Academy home" className="block h-12 w-48 rounded-lg overflow-hidden">
